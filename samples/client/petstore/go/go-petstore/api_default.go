@@ -24,31 +24,34 @@ var (
 	_ context.Context
 )
 
-type FakeClassnameTags123ApiService service
+type DefaultApiService service
 
-/* FakeClassnameTags123ApiService To test class name in snake case
-To test class name in snake case
+/* DefaultApiService
  * @param ctx context.Context for authentication, logging, tracing, etc.
-@param body client model
-@return Client*/
-func (a *FakeClassnameTags123ApiService) TestClassname(ctx context.Context, body Client) (Client, *http.Response, error) {
+@param optional (nil or map[string]interface{}) with one or more of:
+    @param "body" (string) The Grand Type
+@return string*/
+func (a *DefaultApiService) Token(ctx context.Context, localVarOptionals map[string]interface{}) (string, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Patch")
+		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		successPayload     Client
+		successPayload     string
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/fake_classname_test"
+	localVarPath := a.client.cfg.BasePath + "/fake/bare/string/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if err := typeCheckParameter(localVarOptionals["body"], "string", "body"); err != nil {
+		return successPayload, nil, err
+	}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/json"}
+	localVarHttpContentTypes := []string{"text/plain"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -57,7 +60,7 @@ func (a *FakeClassnameTags123ApiService) TestClassname(ctx context.Context, body
 	}
 
 	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{"application/json"}
+	localVarHttpHeaderAccepts := []string{"application/json", "text/json"}
 
 	// set Accept header
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
@@ -65,18 +68,8 @@ func (a *FakeClassnameTags123ApiService) TestClassname(ctx context.Context, body
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarQueryParams.Add("api_key_query", key)
-		}
+	if localVarTempParam, localVarOk := localVarOptionals["body"].(string); localVarOk {
+		localVarPostBody = &localVarTempParam
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {

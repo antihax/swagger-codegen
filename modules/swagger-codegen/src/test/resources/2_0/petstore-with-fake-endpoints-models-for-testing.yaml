@@ -807,6 +807,29 @@ paths:
           description: User not found
       security:
         - http_basic_test: []
+  /fake/bare/string/:
+    post:
+      operationId: Token
+      consumes:
+        - text/plain
+      responses:
+        '200':
+          description: OK
+          schema:
+           type: string
+        '400':
+          description: Bad Request
+          schema:
+            type: string
+      produces:
+        - "application/json"
+        - "text/json"
+      parameters:
+        - in: body
+          name: body
+          description: The Grand Type
+          schema:
+            type: string
   /fake/outer/number:
     post:
       tags:

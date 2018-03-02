@@ -528,7 +528,7 @@ paths:
       parameters:
       - name: "username"
         in: "path"
-        description: "The name that needs to be fetched. Use user1 for testing. "
+        description: "The name that needs to be fetched. Use user1 for testing."
         required: true
         type: "string"
         x-exportParamName: "Username"
@@ -595,6 +595,7 @@ paths:
       tags:
       - "fake_classname_tags 123#$%^"
       summary: "To test class name in snake case"
+      description: "To test class name in snake case"
       operationId: "testClassname"
       consumes:
       - "application/json"
@@ -872,6 +873,31 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/Client"
+  /fake/bare/string/:
+    post:
+      operationId: "Token"
+      consumes:
+      - "text/plain"
+      produces:
+      - "application/json"
+      - "text/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "The Grand Type"
+        required: false
+        schema:
+          type: "string"
+        x-exportParamName: "Body"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "string"
+        400:
+          description: "Bad Request"
+          schema:
+            type: "string"
   /fake/outer/number:
     post:
       tags:

@@ -253,7 +253,7 @@ func (a *UserApiService) DeleteUser(ctx context.Context, username string) (*http
 /* UserApiService Get user by user name
 
  * @param ctx context.Context for authentication, logging, tracing, etc.
-@param username The name that needs to be fetched. Use user1 for testing. 
+@param username The name that needs to be fetched. Use user1 for testing.
 @return User*/
 func (a *UserApiService) GetUserByName(ctx context.Context, username string) (User, *http.Response, error) {
 	var (
